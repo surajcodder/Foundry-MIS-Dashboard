@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mc="sap.suite.ui.microchart">
+    <Panel class="sapUiNoContentPadding">
+        <headerToolbar>
+            <OverflowToolbar>
+                <Title text="DAILY (Combine Production)" titleStyle="H6"/>
+                <ToolbarSpacer />
+                <SegmentedButton selectedKey="table" selectionChange="onToggleView">
+                    <items>
+                        <SegmentedButtonItem icon="sap-icon://table-view" text="Table" key="table" />
+                        <SegmentedButtonItem icon="sap-icon://bar-chart" text="Chart" key="chart" />
+                    </items>
+                    <customData>
+                        <core:CustomData key="tableId" value="combineTable" />
+                        <core:CustomData key="chartId" value="combineChart" />
+                    </customData>
+                </SegmentedButton>
+                <Button icon="sap-icon://excel-attachment" type="Transparent" />
+            </OverflowToolbar>
+        </headerToolbar>
+        <content>
+            <Table id="combineTable" items="{combineModel>/}" visible="true">
+                <columns>
+                    <Column><Text text="Category"/></Column>
+                    <Column hAlign="End"><Text text="Daily Act"/></Column>
+                    <Column hAlign="End"><Text text="Month Act"/></Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{combineModel>category}"/>
+                            <ObjectNumber number="{combineModel>d_act}" state="None"/>
+                            <ObjectNumber number="{combineModel>m_act}" state="Information"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <VBox id="combineChart" visible="false" height="250px" alignItems="Center" class="sapUiMediumMarginTop">
+                <Title text="Daily Performance" class="sapUiSmallMarginBottom"/>
+                <mc:InteractiveBarChart bars="{combineModel>/}" labelWidth="35%">
+                    <mc:bars>
+                        <mc:InteractiveBarChartBar label="{combineModel>category}" value="{path: 'combineModel>d_act', formatter: '.formatFloat'}"/>
+                    </mc:bars>
+                </mc:InteractiveBarChart>
+            </VBox>
+        </content>
+    </Panel>
+</core:FragmentDefinition>

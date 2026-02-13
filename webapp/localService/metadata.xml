@@ -1,0 +1,68 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZO_FOUNDRY_DASHBOARD_SRV" xml:lang="en" sap:schema-version="1">
+            <Annotation
+                xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Core.SchemaVersion" String="1.0.0"/>
+                <EntityType Name="es_dtm" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="budat"/>
+                    </Key>
+                    <Property Name="budat" Type="Edm.String" Nullable="false" sap:unicode="false"/>
+                    <Property Name="category" Type="Edm.String" sap:unicode="false"/>
+                    <Property Name="meins" Type="Edm.String" sap:unicode="false"/>
+                    <Property Name="plant1_d_plan" Type="Edm.String" sap:unicode="false"/>
+                    <Property Name="plant1_d_act" Type="Edm.String" sap:unicode="false"/>
+                    <Property Name="plant1_m_plan" Type="Edm.String" sap:unicode="false"/>
+                    <Property Name="plant1_m_act" Type="Edm.String" sap:unicode="false"/>
+                    <Property Name="plant2_d_plan" Type="Edm.String" sap:unicode="false"/>
+                    <Property Name="plant2_d_act" Type="Edm.String" sap:unicode="false"/>
+                    <Property Name="plant2_m_plan" Type="Edm.String" sap:unicode="false"/>
+                    <Property Name="plant2_m_act" Type="Edm.String" sap:unicode="false"/>
+                    <Property Name="cat_text" Type="Edm.String" sap:unicode="false"/>
+                </EntityType>
+                <EntityType Name="es_combine" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="budat"/>
+                    </Key>
+                    <Property Name="budat" Type="Edm.String" Nullable="false" sap:unicode="false"/>
+                    <Property Name="category" Type="Edm.String" sap:unicode="false"/>
+                    <Property Name="d_act" Type="Edm.String" sap:unicode="false"/>
+                    <Property Name="m_act" Type="Edm.String" sap:unicode="false"/>
+                    <Property Name="t_menge" Type="Edm.String" sap:unicode="false"/>
+                </EntityType>
+                <EntityType Name="es_dm_disp" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="budat"/>
+                    </Key>
+                    <Property Name="budat" Type="Edm.String" Nullable="false" sap:unicode="false"/>
+                    <Property Name="category" Type="Edm.String" sap:unicode="false"/>
+                    <Property Name="dm_daily" Type="Edm.String" sap:unicode="false"/>
+                    <Property Name="dm_month" Type="Edm.String" sap:unicode="false"/>
+                    <Property Name="dis_daily" Type="Edm.String" sap:unicode="false"/>
+                    <Property Name="dis_month" Type="Edm.String" sap:unicode="false"/>
+                </EntityType>
+                <EntityType Name="es_stock" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="budat"/>
+                    </Key>
+                    <Property Name="budat" Type="Edm.String" Nullable="false" sap:unicode="false"/>
+                    <Property Name="parameter" Type="Edm.String" sap:unicode="false"/>
+                    <Property Name="menge" Type="Edm.String" sap:unicode="false"/>
+                </EntityType>
+                <EntityContainer Name="ZO_FOUNDRY_DASHBOARD_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                    <EntitySet Name="es_dtmset" EntityType="ZO_FOUNDRY_DASHBOARD_SRV.es_dtm" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                    <EntitySet Name="es_combineset" EntityType="ZO_FOUNDRY_DASHBOARD_SRV.es_combine" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                    <EntitySet Name="es_dm_dispset" EntityType="ZO_FOUNDRY_DASHBOARD_SRV.es_dm_disp" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                    <EntitySet Name="es_stockset" EntityType="ZO_FOUNDRY_DASHBOARD_SRV.es_stock" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                </EntityContainer>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="https://DEVDBAPP.TITAGARH.IN:44301/sap/opu/odata/sap/ZO_FOUNDRY_DASHBOARD_SRV/$metadata"/>
+                    <atom:link
+                        xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="https://DEVDBAPP.TITAGARH.IN:44301/sap/opu/odata/sap/ZO_FOUNDRY_DASHBOARD_SRV/$metadata"/>
+                    </Schema>
+                </edmx:DataServices>
+            </edmx:Edmx>

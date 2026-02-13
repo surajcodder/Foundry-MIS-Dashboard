@@ -1,0 +1,161 @@
+<mvc:View controllerName="com.infocusinMIS_Dashboard_2.controller.View1" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout" xmlns:t="sap.ui.table" height="100%">
+	<Page showHeader="false" class="sapUiContentPadding" backgroundDesign="List">
+		<content>
+			<!-- Title + Date -->
+			<VBox width="100%" alignItems="Center" class="sapUiSmallMarginBottom">
+				<Title text="Foundry MIS Report" level="H1"/>
+				<HBox justifyContent="Center" class="sapUiSmallMarginTop">
+					<DatePicker id="dpDate" displayFormat="dd-MMM-yyyy" valueFormat="yyyyMMdd" width="200px"/>
+					<Button text="Go" type="Emphasized" press="onExecuteReport" icon="sap-icon://play" class="sapUiTinyMarginBegin"/>
+				</HBox>
+			</VBox>
+			<VBox width="100%">
+				<!-- ================= HEADER (TABLE 1) ================= -->
+				<VBox class="excelHeaderBlock">
+					<!-- Row 1 -->
+					<HBox class="excelHdrRow">
+						<VBox class="hCell cSlno"/>
+						<VBox class="hCell cParam"/>
+						<VBox class="hCell cUnit"/>
+						<VBox class="hCell cFU1"><Text text="Foundry Unit-1" class="hdrBold"/></VBox>
+						<VBox class="hCell cFU2"><Text text="Foundry Unit-2" class="hdrBold"/></VBox>
+					</HBox>
+					<!-- Row 2 -->
+					<HBox class="excelHdrRow">
+						<VBox class="hCell cSlno"/>
+						<VBox class="hCell cParam"/>
+						<VBox class="hCell cUnit"/>
+						<HBox class="hCell cFU1sub">
+							<VBox class="hSubCell cDaily"><Text text="Daily" class="hdrBold"/></VBox>
+							<VBox class="hSubCell cMtd"><Text text="MTD" class="hdrBold"/></VBox>
+						</HBox>
+						<HBox class="hCell cFU2sub">
+							<VBox class="hSubCell cDaily"><Text text="Daily" class="hdrBold"/></VBox>
+							<VBox class="hSubCell cMtd"><Text text="MTD" class="hdrBold"/></VBox>
+						</HBox>
+					</HBox>
+					<!-- Row 3 -->
+					<HBox class="excelHdrRow">
+						<VBox class="hCell cSlno"><Text text="Sl No" class="hdrBold"/></VBox>
+						<VBox class="hCell cParam"><Text text="Parameters" class="hdrBold"/></VBox>
+						<VBox class="hCell cUnit"><Text text="Unit" class="hdrBold"/></VBox>
+						<HBox class="hCell cFU1cols">
+							<VBox class="hSubCell cCol"><Text text="Plan" class="hdrBold"/></VBox>
+							<VBox class="hSubCell cCol"><Text text="Actual" class="hdrBold"/></VBox>
+							<VBox class="hSubCell cCol"><Text text="Plan" class="hdrBold"/></VBox>
+							<VBox class="hSubCell cCol"><Text text="Actual" class="hdrBold"/></VBox>
+						</HBox>
+						<HBox class="hCell cFU2cols">
+							<VBox class="hSubCell cCol"><Text text="Plan" class="hdrBold"/></VBox>
+							<VBox class="hSubCell cCol"><Text text="Actual" class="hdrBold"/></VBox>
+							<VBox class="hSubCell cCol"><Text text="Plan" class="hdrBold"/></VBox>
+							<VBox class="hSubCell cCol"><Text text="Actual" class="hdrBold"/></VBox>
+						</HBox>
+					</HBox>
+				</VBox>
+				<!-- ================= TABLE 1 ================= -->
+				<t:Table id="misTable" rows="{dtmModel>/}" fixedLayout="true" width="100%" selectionMode="None" rowHeaderWidth="0"
+					enableColumnReordering="false" visibleRowCountMode="Fixed" visibleRowCount="0" columnHeaderVisible="false" showNoData="true"
+					class="excelStyleTable">
+					<t:columns>
+						<t:Column width="5%">
+							<t:template><Text text="{dtmModel>sl_no}"/></t:template>
+						</t:Column>
+						<t:Column width="19%">
+							<t:template><Text text="{dtmModel>cat_text}"/></t:template>
+						</t:Column>
+						<t:Column width="6%">
+							<t:template><Text text="{dtmModel>meins}"/></t:template>
+						</t:Column>
+						<t:Column width="8.75%">
+							<t:template><Text text="{dtmModel>plant1_d_plan}"/></t:template>
+						</t:Column>
+						<t:Column width="8.75%">
+							<t:template><Text text="{dtmModel>plant1_d_act}"/></t:template>
+						</t:Column>
+						<t:Column width="8.75%">
+							<t:template><Text text="{dtmModel>plant1_m_plan}"/></t:template>
+						</t:Column>
+						<t:Column width="8.75%">
+							<t:template><Text text="{dtmModel>plant1_m_act}"/></t:template>
+						</t:Column>
+						<t:Column width="8.75%">
+							<t:template><Text text="{dtmModel>plant2_d_plan}"/></t:template>
+						</t:Column>
+						<t:Column width="8.75%">
+							<t:template><Text text="{dtmModel>plant2_d_act}"/></t:template>
+						</t:Column>
+						<t:Column width="8.75%">
+							<t:template><Text text="{dtmModel>plant2_m_plan}"/></t:template>
+						</t:Column>
+						<t:Column width="8.75%">
+							<t:template><Text text="{dtmModel>plant2_m_act}"/></t:template>
+						</t:Column>
+					</t:columns>
+				</t:Table>
+				<!-- ================= HEADER (TABLE 2) ================= -->
+				<VBox class="excelHeaderBlock sapUiSmallMarginTop">
+					<HBox class="excelHdrRow">
+						<VBox class="hCellFull t2Slno"><Text text="SL NO" class="hdrBold"/></VBox>
+						<VBox class="hCellFull t2Item"><Text text="Item Name" class="hdrBold"/></VBox>
+						<VBox class="hCellFull t2Target"><Text text="Target" class="hdrBold"/></VBox>
+						<VBox class="hCellFull t2Act"><Text text="Actual on date" class="hdrBold"/></VBox>
+						<VBox class="hCellFull t2Act2"><Text text="Actual Till Date" class="hdrBold"/></VBox>
+						<VBox class="t2DMGroup">
+							<VBox class="hGroupCell"><Text text="DM Details" class="hdrBold"/></VBox>
+							<HBox>
+								<VBox class="hSubCell t2DMItem"><Text text="Item" class="hdrBold"/></VBox>
+								<VBox class="hSubCell t2DMCol"><Text text="Actual on date" class="hdrBold"/></VBox>
+								<VBox class="hSubCell t2DMCol"><Text text="Actual Till Date" class="hdrBold"/></VBox>
+							</HBox>
+						</VBox>
+						<VBox class="t2DispGroup">
+							<VBox class="hGroupCell"><Text text="Despatch" class="hdrBold"/></VBox>
+							<HBox>
+								<VBox class="hSubCell t2DispSubCol"><Text text="Actual on date" class="hdrBold"/></VBox>
+								<VBox class="hSubCell t2DispSubCol"><Text text="Actual Till Date" class="hdrBold"/></VBox>
+							</HBox>
+						</VBox>
+					</HBox>
+				</VBox>
+				<t:Table id="itemTable" rows="{itemModel>/}" fixedLayout="true" width="100%" selectionMode="None" rowHeaderWidth="0"
+					enableColumnReordering="false" visibleRowCountMode="Fixed" visibleRowCount="0" columnHeaderVisible="false" showNoData="true"
+					class="excelStyleTable">
+					<t:columns>
+						<t:Column width="5%" hAlign="Center">
+							<t:template><Text text="{itemModel>sl_no}"/></t:template>
+						</t:Column>
+						<t:Column width="20%">
+							<t:template><Text text="{itemModel>item_name}"/></t:template>
+						</t:Column>
+						<t:Column width="8%" hAlign="Center">
+							<t:template><Text text="{itemModel>target}"/></t:template>
+						</t:Column>
+						<t:Column width="9%" hAlign="Center">
+							<t:template><Text text="{itemModel>actual_on_date}"/></t:template>
+						</t:Column>
+						<t:Column width="9%" hAlign="Center">
+							<t:template><Text text="{itemModel>actual_till_date}"/></t:template>
+						</t:Column>
+						<t:Column width="10%">
+							<t:template><Text text="{itemModel>dm_item}"/></t:template>
+						</t:Column>
+						<t:Column width="9%" hAlign="Center">
+							<t:template><Text text="{itemModel>dm_actual_on_date}"/></t:template>
+						</t:Column>
+						<t:Column width="9%" hAlign="Center">
+							<t:template><Text text="{itemModel>dm_actual_till_date}"/></t:template>
+						</t:Column>
+						<t:Column width="10.5%" hAlign="Center">
+							<t:template><Text text="{itemModel>disp_actual_on_date}"/></t:template>
+						</t:Column>
+						<t:Column width="10.5%" hAlign="Center">
+							<t:template><Text text="{itemModel>disp_actual_till_date}"/></t:template>
+						</t:Column>
+					</t:columns>
+				</t:Table>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

@@ -1,0 +1,45 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mc="sap.suite.ui.microchart">
+    <Panel class="sapUiNoContentPadding">
+        <headerToolbar>
+            <OverflowToolbar>
+                <Title text="DM &amp; Dispatches" titleStyle="H6"/>
+                <ToolbarSpacer />
+                <SegmentedButton selectedKey="table" selectionChange="onToggleView">
+                    <items>
+                        <SegmentedButtonItem icon="sap-icon://table-view" text="Table" key="table" />
+                        <SegmentedButtonItem icon="sap-icon://vertical-bar-chart" text="Chart" key="chart" />
+                    </items>
+                    <customData>
+                        <core:CustomData key="tableId" value="dispatchTable" />
+                        <core:CustomData key="chartId" value="dispatchChart" />
+                    </customData>
+                </SegmentedButton>
+            </OverflowToolbar>
+        </headerToolbar>
+        <content>
+            <Table id="dispatchTable" items="{dispatchModel>/}" visible="true">
+                <columns>
+                    <Column><Text text="Category"/></Column>
+                    <Column hAlign="End"><Text text="Daily Disp"/></Column>
+                    <Column hAlign="End"><Text text="Monthly Disp"/></Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{dispatchModel>category}"/>
+                            <ObjectNumber number="{dispatchModel>dis_daily}" state="Success"/>
+                            <ObjectNumber number="{dispatchModel>dis_month}" state="Success"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <VBox id="dispatchChart" visible="false" height="250px" class="sapUiSmallMargin">
+                <mc:ComparisonMicroChart size="Responsive" data="{dispatchModel>/}">
+                    <mc:data>
+                        <mc:ComparisonMicroChartData title="{dispatchModel>category}" value="{path: 'dispatchModel>dis_daily', formatter: '.formatFloat'}" color="Good"/>
+                    </mc:data>
+                </mc:ComparisonMicroChart>
+            </VBox>
+        </content>
+    </Panel>
+</core:FragmentDefinition>

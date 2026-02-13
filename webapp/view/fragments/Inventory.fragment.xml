@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mc="sap.suite.ui.microchart">
+    <Panel class="sapUiNoContentPadding">
+        <headerToolbar>
+            <OverflowToolbar>
+                <Title text="Inventory Status" titleStyle="H6"/>
+                <ToolbarSpacer />
+                <SegmentedButton selectedKey="table" selectionChange="onToggleView">
+                    <items>
+                        <SegmentedButtonItem icon="sap-icon://table-view" text="Table" key="table" />
+                        <SegmentedButtonItem icon="sap-icon://BusinessSuiteInAppSymbols/icon-pie-chart" text="Chart" key="chart" />
+                    </items>
+                    <customData>
+                        <core:CustomData key="tableId" value="stockTable" />
+                        <core:CustomData key="chartId" value="stockChart" />
+                    </customData>
+                </SegmentedButton>
+            </OverflowToolbar>
+        </headerToolbar>
+        <content>
+            <Table id="stockTable" items="{stockModel>/}" visible="true">
+                <columns>
+                    <Column><Text text="Parameter"/></Column>
+                    <Column hAlign="End"><Text text="Quantity"/></Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{stockModel>parameter}"/>
+                            <ObjectNumber number="{stockModel>menge}" state="Warning" unit="ST"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <FlexBox id="stockChart" visible="false" height="250px" justifyContent="Center" alignItems="Center">
+                <mc:InteractiveDonutChart segments="{stockModel>/}">
+                    <mc:segments>
+                        <mc:InteractiveDonutChartSegment label="{stockModel>parameter}" value="{path: 'stockModel>menge', formatter: '.formatFloat'}"/>
+                    </mc:segments>
+                </mc:InteractiveDonutChart>
+            </FlexBox>
+        </content>
+    </Panel>
+</core:FragmentDefinition>
